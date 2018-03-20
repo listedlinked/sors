@@ -1,0 +1,26 @@
+[Unit]
+Description=sors's distributed currency daemon
+After=network.target
+
+[Service]
+User=sors
+Group=sors
+
+Type=forking
+PIDFile=/var/lib/sorsd/sorsd.pid
+
+ExecStart=/usr/bin/sorsd -daemon -pid=/var/lib/sorsd/sorsd.pid \
+          -conf=/etc/sors/sors.conf -datadir=/var/lib/sorsd
+
+ExecStop=-/usr/bin/sors-cli -conf=/etc/sors/sors.conf \
+         -datadir=/var/lib/sorsd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

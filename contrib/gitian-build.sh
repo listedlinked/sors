@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/ALQOCRYPTO/ALQO
+url=https://github.com/listedlinked/sors
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the alqo, gitian-builder, gitian.sigs, and alqo-detached-sigs.
+Run this script from the directory containing the sors, gitian-builder, gitian.sigs, and sors-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/ALQOCRYPTO/ALQO
+-u|--url	Specify the URL of the repository. Default is https://github.com/listedlinked/sors
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/ALQOCRYPTO/ALQO.SIGS.git
-    git clone https://github.com/ALQO-DETACHED.SIGS.git
+    git clone https://github.com/listedlinked/sors.SIGS.git
+    git clone https://github.com/sors-DETACHED.SIGS.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -247,7 +247,7 @@ then
 fi
 
 # Set up build
-pushd ./alqo
+pushd ./sors
 git fetch
 git checkout ${COMMIT}
 popd
@@ -256,7 +256,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./alqo-binaries/${VERSION}
+	mkdir -p ./sors-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -266,7 +266,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../alqo/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../sors/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit alqo=${COMMIT} --url alqo=${url} ../alqo/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../alqo/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/alqo-*.tar.gz build/out/src/alqo-*.tar.gz ../alqo-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit sors=${COMMIT} --url sors=${url} ../sors/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../sors/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/sors-*.tar.gz build/out/src/sors-*.tar.gz ../sors-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit alqo=${COMMIT} --url alqo=${url} ../alqo/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../alqo/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/alqo-*-win-unsigned.tar.gz inputs/alqo-win-unsigned.tar.gz
-	    mv build/out/alqo-*.zip build/out/alqo-*.exe ../alqo-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit sors=${COMMIT} --url sors=${url} ../sors/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../sors/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/sors-*-win-unsigned.tar.gz inputs/sors-win-unsigned.tar.gz
+	    mv build/out/sors-*.zip build/out/sors-*.exe ../sors-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -295,10 +295,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit alqo=${COMMIT} --url alqo=${url} ../alqo/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../alqo/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/alqo-*-osx-unsigned.tar.gz inputs/alqo-osx-unsigned.tar.gz
-	    mv build/out/alqo-*.tar.gz build/out/alqo-*.dmg ../alqo-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit sors=${COMMIT} --url sors=${url} ../sors/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../sors/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/sors-*-osx-unsigned.tar.gz inputs/sors-osx-unsigned.tar.gz
+	    mv build/out/sors-*.tar.gz build/out/sors-*.dmg ../sors-binaries/${VERSION}
 	fi
 	popd
 
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../alqo/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../sors/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../alqo/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../sors/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../alqo/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../sors/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../alqo/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../sors/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../alqo/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../sors/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,10 +360,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../alqo/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../alqo/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/alqo-*win64-setup.exe ../alqo-binaries/${VERSION}
-	    mv build/out/alqo-*win32-setup.exe ../alqo-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../sors/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../sors/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/sors-*win64-setup.exe ../sors-binaries/${VERSION}
+	    mv build/out/sors-*win32-setup.exe ../sors-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -371,9 +371,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../alqo/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../alqo/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/alqo-osx-signed.dmg ../alqo-binaries/${VERSION}/alqo-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../sors/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../sors/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/sors-osx-signed.dmg ../sors-binaries/${VERSION}/sors-${VERSION}-osx.dmg
 	fi
 	popd
 

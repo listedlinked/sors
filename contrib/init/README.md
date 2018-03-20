@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: alqod.service
-Upstart: alqod.conf
-OpenRC:  alqod.openrc
-         alqod.openrcconf
-CentOS:  alqod.init
+SystemD: sorsd.service
+Upstart: sorsd.conf
+OpenRC:  sorsd.openrc
+         sorsd.openrcconf
+CentOS:  sorsd.init
 
 have been made available to assist packagers in creating node packages here.
 

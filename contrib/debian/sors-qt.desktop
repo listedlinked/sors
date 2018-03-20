@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=sors
+Comment=sors P2P Cryptocurrency
+Comment[fr]=sors, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=sors, eşten eşe kriptografik sanal para birimi
+Exec=sors-qt %u
+Terminal=false
+Type=Application
+Icon=sors128
+MimeType=x-scheme-handler/sors;
+Categories=Office;Finance;

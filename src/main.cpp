@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2015-2017 The sors developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,7 +42,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "ALQO cannot be compiled without assertions."
+#error "sors cannot be compiled without assertions."
 #endif
 
 /**
@@ -96,7 +96,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "ALQO Signed Message:\n";
+const string strMessageMagic = "sors Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -1705,7 +1705,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 				masternodeMultiplier = .9;
 			}
 			
-			LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked ALQO) and %d ALQO supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue*100, nMoneySupply, GetTime());
+			LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked sors) and %d sors supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue*100, nMoneySupply, GetTime());
 			LogPrintf("[LIBRA] Masternode: %d\n", masternodeMultiplier*100);
 			LogPrintf("[LIBRA] Staker: %d\n", (1 - masternodeMultiplier)*100);
 			
@@ -2101,7 +2101,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("alqo-scriptch");
+    RenameThread("sors-scriptch");
     scriptcheckqueue.Thread();
 }
 

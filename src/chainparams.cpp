@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2015-2017 The ALQO developers
+// Copyright (c) 2015-2017 The sors developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -98,15 +98,15 @@ public:
         pchMessageStart[3] = 0x14;
         vAlertPubKey = ParseHex("0497dfcea626dca270cfe2eebf1160733b07352af966926e30058ca53dae05bbc71d64dbaa0c66e373211e324a23b361fc33e1e2dece1fb90afcefc707643a28f5");
         nDefaultPort = 55500;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // ALQO starting difficulty is 1 / 2^12  //20
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // sors starting difficulty is 1 / 2^12  //20
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // ALQO: 1 day
-        nTargetSpacing = 1 * 60;  // ALQO: 1 minute
+        nTargetTimespan = 1 * 60; // sors: 1 day
+        nTargetSpacing = 1 * 60;  // sors: 1 minute
         nLastPOWBlock = 475200;
         nMaturity = 110;
         nMasternodeCountDrift = 20;
@@ -114,7 +114,7 @@ public:
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 100000000 * COIN;
 
-        const char* pszTimestamp = "30th October 2017 - ALQO - The day you'll remember.";
+        const char* pszTimestamp = "30th October 2017 - sors - The day you'll remember.";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -202,8 +202,8 @@ public:
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // ALQO: 1 day
-        nTargetSpacing = 1 * 60;  // ALQO: 1 minute
+        nTargetTimespan = 1 * 60; // sors: 1 day
+        nTargetSpacing = 1 * 60;  // sors: 1 minute
         nLastPOWBlock = 200;
         nMaturity = 15;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
@@ -238,11 +238,11 @@ public:
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 83);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 193);
-        // Testnet alqo BIP32 pubkeys start with 'DRKV'
+        // Testnet sors BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet alqo BIP32 prvkeys start with 'DRKP'
+        // Testnet sors BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet alqo BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet sors BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -290,8 +290,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // ALQO: 1 day
-        nTargetSpacing = 1 * 60;        // ALQO: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // sors: 1 day
+        nTargetSpacing = 1 * 60;        // sors: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1509321603;
         genesis.nBits = 0x1e0ffff0;

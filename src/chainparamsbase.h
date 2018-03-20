@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between alqo-cli and alqod)
- * of a given instance of the ALQO system.
+ * CBaseChainParams defines the base parameters (shared between sors-cli and sorsd)
+ * of a given instance of the sors system.
  */
 class CBaseChainParams
 {

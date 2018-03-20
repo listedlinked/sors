@@ -6,7 +6,7 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/alqo-config.h"
+#include "config/sors-config.h"
 #endif
 
 #include "amount.h"

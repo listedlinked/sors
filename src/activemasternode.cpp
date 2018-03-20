@@ -9,7 +9,7 @@
 #include "chainparams.h"
 
 
-// Bootup the Masternode, look for a 10000 ALQO input and register on the network
+// Bootup the Masternode, look for a 10000 sors input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {

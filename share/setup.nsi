@@ -1,4 +1,4 @@
-Name "ALQO Core (-bit)"
+Name "sors Core (-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -6,23 +6,23 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 2.0.0
-!define COMPANY "ALQO Core project"
-!define URL http://bit.alqos/
+!define COMPANY "sors Core project"
+!define URL http://bit.sorss/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/root/ALQO/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/root/ALQO/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/root/sors/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/root/sors/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/root/ALQO/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/root/sors/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "ALQO Core"
-!define MUI_FINISHPAGE_RUN $INSTDIR\alqo-qt.exe
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "sors Core"
+!define MUI_FINISHPAGE_RUN $INSTDIR\sors-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/root/ALQO/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/root/sors/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -48,18 +48,18 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /root/ALQO/alqo-${VERSION}-win-setup.exe
+OutFile /root/sors/sors-${VERSION}-win-setup.exe
 !if "" == "64"
-InstallDir $PROGRAMFILES64\ALQO
+InstallDir $PROGRAMFILES64\sors
 !else
-InstallDir $PROGRAMFILES\ALQO
+InstallDir $PROGRAMFILES\sors
 !endif
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion ${VERSION}.3
-VIAddVersionKey ProductName "ALQO Core"
+VIAddVersionKey ProductName "sors Core"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
@@ -73,19 +73,19 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /root/ALQO/release/alqo-qt.exe
-    File /oname=COPYING.txt /root/ALQO/COPYING
-    File /oname=readme.txt /root/ALQO/doc/README_windows.txt
+    File /root/sors/release/sors-qt.exe
+    File /oname=COPYING.txt /root/sors/COPYING
+    File /oname=readme.txt /root/sors/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /root/ALQO/release/alqod.exe
-    File /root/ALQO/release/alqo-cli.exe
+    File /root/sors/release/sorsd.exe
+    File /root/sors/release/sors-cli.exe
     SetOutPath $INSTDIR\doc
-    File /r /root/ALQO/doc\*.*
+    File /r /root/sors/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 
-    # Remove old wxwidgets-based-alqo executable and locales:
-    Delete /REBOOTOK $INSTDIR\alqo.exe
+    # Remove old wxwidgets-based-sors executable and locales:
+    Delete /REBOOTOK $INSTDIR\sors.exe
     RMDir /r /REBOOTOK $INSTDIR\locale
 SectionEnd
 
@@ -95,7 +95,7 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\alqo-qt.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\sors-qt.exe
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
@@ -106,10 +106,10 @@ Section -post SEC0001
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "alqo" "URL Protocol" ""
-    WriteRegStr HKCR "alqo" "" "URL:ALQO"
-    WriteRegStr HKCR "alqo\DefaultIcon" "" $INSTDIR\alqo-qt.exe
-    WriteRegStr HKCR "alqo\shell\open\command" "" '"$INSTDIR\alqo-qt.exe" "%1"'
+    WriteRegStr HKCR "sors" "URL Protocol" ""
+    WriteRegStr HKCR "sors" "" "URL:sors"
+    WriteRegStr HKCR "sors\DefaultIcon" "" $INSTDIR\sors-qt.exe
+    WriteRegStr HKCR "sors\shell\open\command" "" '"$INSTDIR\sors-qt.exe" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -127,7 +127,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\alqo-qt.exe
+    Delete /REBOOTOK $INSTDIR\sors-qt.exe
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     Delete /REBOOTOK $INSTDIR\readme.txt
     RMDir /r /REBOOTOK $INSTDIR\daemon
@@ -139,7 +139,7 @@ Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
-    Delete /REBOOTOK "$SMSTARTUP\ALQO.lnk"
+    Delete /REBOOTOK "$SMSTARTUP\sors.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
@@ -147,7 +147,7 @@ Section -un.post UNSEC0001
     DeleteRegValue HKCU "${REGKEY}" Path
     DeleteRegKey /IfEmpty HKCU "${REGKEY}\Components"
     DeleteRegKey /IfEmpty HKCU "${REGKEY}"
-    DeleteRegKey HKCR "alqo"
+    DeleteRegKey HKCR "sors"
     RmDir /REBOOTOK $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $INSTDIR
     Push $R0

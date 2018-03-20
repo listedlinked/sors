@@ -64,15 +64,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += alqod
+  bin_PROGRAMS += sorsd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += alqo-cli alqo-tx
+  bin_PROGRAMS += sors-cli sors-tx
 endif
 
 .PHONY: FORCE
-# alqo core #
+# sors core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -180,7 +180,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between alqod and alqo-qt
+# server: shared between sorsd and sors-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(BOOST_CPPFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -224,7 +224,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between alqod and alqo-qt, but only linked
+# wallet: shared between sorsd and sors-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -295,7 +295,7 @@ univalue_libbitcoin_univalue_a_SOURCES = \
   univalue/univalue_escapes.h \
   univalue/univalue.h
 
-# common: shared between alqod, and alqo-qt and non-server tools
+# common: shared between sorsd, and sors-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   allocators.cpp \
@@ -351,7 +351,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between alqo-cli and alqo-qt
+# cli: shared between sors-cli and sors-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -361,7 +361,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-alqod_LDADD = \
+sorsd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -372,40 +372,40 @@ alqod_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-alqod_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+sorsd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-alqod_LDADD += libbitcoin_wallet.a
+sorsd_LDADD += libbitcoin_wallet.a
 endif
-alqod_SOURCES = alqod.cpp
+sorsd_SOURCES = sorsd.cpp
 #
 
 if TARGET_WINDOWS
-alqod_SOURCES += alqod-res.rc
+sorsd_SOURCES += sorsd-res.rc
 endif
 
-alqod_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-alqod_CPPFLAGS = $(BITCOIN_INCLUDES)
-alqod_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+sorsd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+sorsd_CPPFLAGS = $(BITCOIN_INCLUDES)
+sorsd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# alqo-cli binary #
-alqo_cli_LDADD = \
+# sors-cli binary #
+sors_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
   $(SSL_LIBS) \
   $(CRYPTO_LIBS)
 
-alqo_cli_SOURCES = \
-  alqo-cli.cpp
+sors_cli_SOURCES = \
+  sors-cli.cpp
 
-alqo_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+sors_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
 
-# alqo-tx binary #
-alqo_tx_LDADD = \
+# sors-tx binary #
+sors_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -414,15 +414,15 @@ alqo_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-alqo_tx_SOURCES = alqo-tx.cpp
-alqo_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+sors_tx_SOURCES = sors-tx.cpp
+sors_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-alqo_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+sors_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-alqo_cli_SOURCES += alqo-cli-res.rc
+sors_cli_SOURCES += sors-cli-res.rc
 endif
-alqo_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+sors_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

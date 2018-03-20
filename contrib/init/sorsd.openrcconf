@@ -1,0 +1,26 @@
+# /etc/conf.d/sorsd: config file for /etc/init.d/sorsd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/sors/sors.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/sorsd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/sorsd.pid"
+
+# Where to write sorsd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/sorsd"
+
+# User and group to own sorsd process
+#BITCOIND_USER="sors"
+#BITCOIND_GROUP="sors"
+
+# Path to sorsd executable
+#BITCOIND_BIN="/usr/bin/sorsd"
+
+# Nice value to run sorsd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
