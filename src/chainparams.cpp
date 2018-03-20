@@ -114,7 +114,7 @@ public:
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 100000000 * COIN;
 
-        const char* pszTimestamp = "30th October 2017 - sors - The day you'll remember.";
+        const char* pszTimestamp = "30th October 2017 - ALQO - The day you'll remember.";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
