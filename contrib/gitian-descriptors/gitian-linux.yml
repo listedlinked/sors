@@ -1,5 +1,5 @@
 ---
-name: "sors-linux-2.3"
+name: "sors-linux-1.0.0.1"
 enable_cache: true
 suites:
 - "trusty"
