@@ -1,8 +1,8 @@
 // clang-format off
-#include "netbase.h"
+#include "net.h"
 #include "masternodeconfig.h"
 #include "util.h"
-#include "chainparams.h"
+#include "ui_interface.h"
 #include <base58.h>
 // clang-format on
 
@@ -56,14 +56,14 @@ bool CMasternodeConfig::read(std::string& strErr)
         }
 
         if (Params().NetworkID() == CBaseChainParams::MAIN) {
-            if (port != 71257) {
+            if (CService(ip).GetPort() != 71257) {
                 strErr = _("Invalid port detected in masternode.conf") + "\n" +
                          strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
                          _("(must be 71257 for mainnet)");
                 streamConfig.close();
                 return false;
             }
-        } else if (port == 71257) {
+        } else if (CService(ip).GetPort() == 71257) {
             strErr = _("Invalid port detected in masternode.conf") + "\n" +
                      strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
                      _("(71257 could be used only on mainnet)");
