@@ -107,7 +107,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // sors: 1 day
         nTargetSpacing = 1 * 60;  // sors: 1 minute
-        nLastPOWBlock = 120;
+        nLastPOWBlock = 150;
         nMaturity = 10;
         nMasternodeCountDrift = 20;
 		nMasternodeColleteralLimxDev = 10000; //Params().MasternodeColleteralLimxDev()
