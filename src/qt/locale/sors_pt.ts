@@ -3654,8 +3654,8 @@ https://www.transifex.com/sors-crypto/sors-wallet-translations/</translation>
         <translation>Aviso: Por favor verifique que a data e a hora do computador está correcta! Se o relógio estiver errado o sors Core não vai funcionar correctamente.</translation>
     </message>
     <message>
-        <source>(55500 could be used only on mainnet)</source>
-        <translation>(55500 apenas pode ser usado para mainnet)</translation>
+        <source>(71257 could be used only on mainnet)</source>
+        <translation>(71257 apenas pode ser usado para mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4064,8 +4064,8 @@ https://www.transifex.com/sors-crypto/sors-wallet-translations/</translation>
         <translation>masternodeprivkey inválida. Por favor reveja a documentação.</translation>
     </message>
     <message>
-        <source>(must be55500 for mainnet)</source>
-        <translation>(deve ser55500 para mainnet)</translation>
+        <source>(must be71257 for mainnet)</source>
+        <translation>(deve ser71257 para mainnet)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>

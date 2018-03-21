@@ -3757,8 +3757,8 @@ zum Beispiel: alertnotify=echo %%s | mail -s \"sors Alert\" admin@foo.com</trans
         <translation>Erlaubte Gegenstellen können nicht wegen DoS ausgeschlossen werden und ihre Transaktionen werden immer weitergeleitet, sogar wenn sie schon im Memory-Pool sind. Dies ist z.B. für Gateways nützlich.</translation>
     </message>
     <message>
-        <source>(55500 could be used only on mainnet)</source>
-        <translation>(55500 kann nur im Standardnetz benutzt werden)</translation>
+        <source>(71257 could be used only on mainnet)</source>
+        <translation>(71257 kann nur im Standardnetz benutzt werden)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4176,8 +4176,8 @@ sors Core wird heruntergefahren.</translation>
         <translation>Masternode-Geheimschlüssel (masternodeprivkey) ist ungültig. Siehe Dokumentation. </translation>
     </message>
     <message>
-        <source>(must be55500 for mainnet)</source>
-        <translation>(muss für Standardnetz55500 sein)</translation>
+        <source>(must be71257 for mainnet)</source>
+        <translation>(muss für Standardnetz71257 sein)</translation>
     </message>
     <message>
         <source>Can't find random Masternode.</source>
