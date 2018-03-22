@@ -205,10 +205,10 @@ static const char UNUSED* sors_strings[] = {
     QT_TRANSLATE_NOOP("sors-core", ""
                                    "You must specify a masternodeprivkey in the configuration. Please see "
                                    "documentation for help."),
-    QT_TRANSLATE_NOOP("sors-core", "(71257 could be used only on mainnet)"),
+    QT_TRANSLATE_NOOP("sors-core", "(60202 could be used only on mainnet)"),
     QT_TRANSLATE_NOOP("sors-core", "(default: %s)"),
     QT_TRANSLATE_NOOP("sors-core", "(default: 1)"),
-    QT_TRANSLATE_NOOP("sors-core", "(must be 71257 for mainnet)"),
+    QT_TRANSLATE_NOOP("sors-core", "(must be 60202 for mainnet)"),
     QT_TRANSLATE_NOOP("sors-core", "<category> can be:\n"),
     QT_TRANSLATE_NOOP("sors-core", "Accept command line and JSON-RPC commands"),
     QT_TRANSLATE_NOOP("sors-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
