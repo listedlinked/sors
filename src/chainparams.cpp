@@ -105,15 +105,10 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // sors: 1 day
-        nTargetSpacing = 1 * 60;  // sors: 1 minute
-<<<<<<< HEAD
-        nLastPOWBlock = 150;
-        nMaturity = 10;
-=======
+        nTargetTimespan = 1 * 60; // ALQO: 1 day
+        nTargetSpacing = 1 * 60;  // ALQO: 1 minute
         nLastPOWBlock = 475200;
         nMaturity = 110;
->>>>>>> parent of 8ca14cf... POW settings and confirms
         nMasternodeCountDrift = 20;
 		nMasternodeColleteralLimxDev = 10000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd

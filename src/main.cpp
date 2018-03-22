@@ -1626,7 +1626,7 @@ int64_t GetBlockValue(int nHeight)
             return 250000 * COIN;
     }
 	
-	if (nHeight == 0) return 10001 * COIN; //start coins 
+	if (nHeight == 0) return 100001 * COIN; //start coins 
 		
 	int64_t nSubsidy;
 	
